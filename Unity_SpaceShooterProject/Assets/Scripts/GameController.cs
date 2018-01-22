@@ -18,6 +18,7 @@ namespace Assets.Scripts
         public Text scoreText;
         public Text gameOverText;
         public GameObject restartButton;
+        public GameObject menuButton;
 
         private bool _isGameOver;
         private int _score;
@@ -26,6 +27,7 @@ namespace Assets.Scripts
         {
             _isGameOver = false;
             restartButton.SetActive(false);
+            menuButton.SetActive(false);
             gameOverText.text = "";
             _score = 0;
             UpdateScore();
@@ -37,6 +39,7 @@ namespace Assets.Scripts
             if (_isGameOver)
             {
                 restartButton.SetActive(true);
+                menuButton.SetActive(true);
             }
             //  if (_restart)
             //  {
