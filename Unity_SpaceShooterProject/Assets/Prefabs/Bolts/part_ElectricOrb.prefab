@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4316649858332412}
   m_Layer: 0
-  m_Name: P_ElectricOrb
+  m_Name: part_ElectricOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

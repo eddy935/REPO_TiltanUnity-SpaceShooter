@@ -2,51 +2,69 @@
 
 namespace Assets.Scripts
 {
-	public class DestroyByContact : MonoBehaviour
-	{
-		public GameObject explosion;
-		public GameObject playerExplosion;
+    public class DestroyByContact : MonoBehaviour
+    {
+        public GameObject explosion;
+        public GameObject playerExplosion;
 
-		public int scoreValue;
+        public int scoreValue;
 
-		private GameController _gameControllerRef;
+        private GameController _gameControllerRef;
+        private DestroyByHealth _destroyByHealthRef;
 
-		void Start()
-		{
-			var gameControllerObj = GameObject.FindWithTag("GameController");
-			if (gameControllerObj != null)
-			{
-				_gameControllerRef = gameControllerObj.GetComponent<GameController>();
-			}
+        void Start()
+        {
+            _destroyByHealthRef = GetComponent<DestroyByHealth>();
+            var gameControllerObj = GameObject.FindWithTag("GameController");
+            if (gameControllerObj != null)
+            {
+                _gameControllerRef = gameControllerObj.GetComponent<GameController>();
+            }
 
-			if (gameControllerObj == null)
-			{
-				Debug.Log("Cannot find GameControllerRef script!!!");
-			}
-		}
+            if (gameControllerObj == null)
+            {
+                Debug.Log("Cannot find GameControllerRef script!!!");
+            }
+        }
 
-		void OnTriggerEnter(Collider other)
-		{   
-			if(other.tag == "boundary" || other.tag == "Enemy")
-			{
-				return;
-			}
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Boss" || other.tag == "Enemy")
+            {
+                return;
+            }
 
+            if (explosion != null)
+            {
+                Instantiate(explosion, transform.position, transform.rotation);
 
-			if (explosion != null)
-			{
-				Instantiate(explosion, transform.position, transform.rotation);
+            }
 
-			}
+            if (other.tag == "Player")
+            {
+                Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+                _gameControllerRef.GameOver();
+                DestroyGameObject(other);
+            }
+            if (other.tag == "PlayerShot")
+            {
+                _destroyByHealthRef.DecreaseHealth();
+            }
+            if (_destroyByHealthRef.health <= 0)
+            {
+                if(tag == "Boss")
+                {
+                    _gameControllerRef.BossDestroyed();
+                }
+                _gameControllerRef.AddScore(scoreValue);
+                DestroyGameObject(other);
+            }
 
-			if (other.tag == "Player")
-			{
-				Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-				_gameControllerRef.GameOver();
-			}
-			_gameControllerRef.AddScore(scoreValue);
-			Destroy(other.gameObject);
-			Destroy(gameObject);
-		}
-	}
+        }
+        public void DestroyGameObject(Collider other)
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }

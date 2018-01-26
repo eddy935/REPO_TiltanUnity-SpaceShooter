@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 64790229105762668}
   - component: {fileID: 114433748620164146}
   - component: {fileID: 82317633383013040}
+  - component: {fileID: 114802948744318310}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -339,6 +340,18 @@ MonoBehaviour:
   fireRate: 0.25
   touchPad: {fileID: 0}
   areaButton: {fileID: 0}
+--- !u!114 &114802948744318310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1931024274224438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf77f76d6afe2444ada37dda3884428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
 --- !u!198 &198371638826030076
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -9,19 +9,22 @@ namespace Assets.Scripts
     {
         public GameObject[] hazards;
         public int hazardCount;
-
         public Vector3 spawnValue;
         public float spawnWait;
         public float startWait;
         public float waveWait;
-
         public Text scoreText;
         public Text gameOverText;
         public GameObject restartButton;
         public GameObject menuButton;
+        public int bossTimer;
+        public bool bossSpawned = false;
+        public int bossSpawnWait;
 
         private bool _isGameOver;
         private int _score;
+        private Coroutine coroutine;
+        private Vector3 bossSpawnOffset;
 
         void Start()
         {
@@ -31,7 +34,9 @@ namespace Assets.Scripts
             gameOverText.text = "";
             _score = 0;
             UpdateScore();
-            StartCoroutine(SpawnWaves());
+            coroutine = StartCoroutine(SpawnWaves());
+            bossTimer = 0;
+            bossSpawnOffset = new Vector3(0, 0, 21);
         }
 
         void Update()
@@ -39,15 +44,14 @@ namespace Assets.Scripts
             if (_isGameOver)
             {
                 restartButton.SetActive(true);
-                menuButton.SetActive(true);
             }
-            //  if (_restart)
-            //  {
-            //      if (Input.GetKeyDown(KeyCode.R))
-            //      {
-            //          SceneManager.LoadScene("Game");
-            //      }
-            //  }
+            bossTimer = (int)Mathf.Floor(Time.timeSinceLevelLoad);
+            if (bossTimer == bossSpawnWait && bossSpawned == false)
+            {
+
+                StopCoroutine(coroutine);
+                coroutine = StartCoroutine(SpawnBoss());
+            }
         }
 
         IEnumerator SpawnWaves()
@@ -55,17 +59,39 @@ namespace Assets.Scripts
             yield return new WaitForSeconds(startWait);
             while (true)
             {
-                for (int i = 0; i < hazardCount; i++)
+                if (!_isGameOver)
                 {
-                    var hazard = hazards[Random.Range(0, hazards.Length)];
-                    var spawnPosition = new Vector3(Random.Range(-spawnValue.x, spawnValue.x), spawnValue.y, spawnValue.z);
-                    var spawnRotation = Quaternion.identity;
+                    for (int i = 0; i < hazardCount; i++)
+                    {
+                        var hazard = hazards[Random.Range(0, 4)];
+                        var spawnPosition = new Vector3(Random.Range(-spawnValue.x, spawnValue.x), spawnValue.y, spawnValue.z);
+                        var spawnRotation = Quaternion.identity;
 
-                    Instantiate(hazard, spawnPosition, spawnRotation);
-                    yield return new WaitForSeconds(spawnWait);
+                        Instantiate(hazard, spawnPosition, spawnRotation);
+                        yield return new WaitForSeconds(spawnWait);
+                    }
+                    yield return new WaitForSeconds(waveWait);
                 }
-                yield return new WaitForSeconds(waveWait);
+                else
+                    yield return null;
             }
+        }
+
+        IEnumerator SpawnBoss()
+        {
+            if (!_isGameOver)
+            {
+                bossSpawned = true;
+                var hazard = hazards[4];
+                var spawnPosition = bossSpawnOffset;
+                var spawnRotation = Quaternion.identity;
+
+                Instantiate(hazard, spawnPosition, spawnRotation);
+                yield return new WaitForSeconds(spawnWait);
+            }
+            else
+                yield return null;
+                StopCoroutine(coroutine);
         }
 
         public void AddScore(int newScoreValue)
@@ -88,6 +114,14 @@ namespace Assets.Scripts
         public void RestartGame()
         {
             SceneManager.LoadScene("Game");
+        }
+
+        public void BossDestroyed()
+        {
+            coroutine = StartCoroutine(SpawnWaves());
+            bossSpawned = false;
+            bossSpawnWait = bossTimer + 15;
+
         }
     }
 }

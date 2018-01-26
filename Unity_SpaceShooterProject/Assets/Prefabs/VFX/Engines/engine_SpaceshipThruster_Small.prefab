@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4104761207803226}
   m_Layer: 0
-  m_Name: P_SpaceshipThruster_Small
+  m_Name: engine_SpaceshipThruster_Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

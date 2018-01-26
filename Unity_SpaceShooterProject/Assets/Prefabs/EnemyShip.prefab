@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 114905741386141182}
   - component: {fileID: 114001980217302708}
   - component: {fileID: 82814525658073796}
+  - component: {fileID: 114622834594767824}
   - component: {fileID: 114938191470196168}
   m_Layer: 0
   m_Name: EnemyShip
@@ -287,8 +288,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Boundary:
-    xMin: -6
-    xMax: 6
+    xMin: -5.7
+    xMax: 5.7
     zMin: -20
     zMax: 20
   tilt: 10
@@ -312,6 +313,18 @@ MonoBehaviour:
   shotSpawn: {fileID: 4479530445179750}
   fireRate: 1.5
   delayFire: 0.5
+--- !u!114 &114622834594767824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1305732346758560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf77f76d6afe2444ada37dda3884428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
 --- !u!114 &114905741386141182
 MonoBehaviour:
   m_ObjectHideFlags: 1
