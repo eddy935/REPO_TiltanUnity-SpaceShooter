@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Assets.Scripts
-{
+
     public class GameController : MonoBehaviour
     {
         public GameObject[] hazards;
@@ -87,4 +86,4 @@ namespace Assets.Scripts
             SceneManager.LoadScene("Game");
         }
     }
-}
+

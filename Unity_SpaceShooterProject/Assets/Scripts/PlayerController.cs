@@ -18,6 +18,7 @@ namespace Assets.Scripts
 
         public GameObject shot;
         public Transform shotSpwan;
+        public Transform[] shotSpwans;
         public float fireRate;
 
         public TouchPad touchPad;
@@ -26,6 +27,7 @@ namespace Assets.Scripts
         private Rigidbody _rigidBody;
         private float _nextFire;
         private AudioSource _audioSource;
+        public bool isDoubleGun;
 
         private Quaternion _calibrationQuaternion;
 
@@ -38,11 +40,30 @@ namespace Assets.Scripts
 
         void Update()
         {
-            if (areaButton.CanFire() && Time.time > _nextFire)
+            // if (areaButton.CanFire() && Time.time > _nextFire)
+            // {
+            //     _nextFire = Time.time + fireRate;
+            //     Instantiate(shot, shotSpwan.position, shotSpwan.rotation);
+            //     _audioSource.Play();
+            // }
+            if (Input.GetKey(KeyCode.LeftControl) && Time.time > _nextFire)
             {
                 _nextFire = Time.time + fireRate;
-                Instantiate(shot, shotSpwan.position, shotSpwan.rotation);
-                _audioSource.Play();
+                if (!isDoubleGun)
+                {
+                    Debug.Log("singleGun");
+                    Instantiate(shot, shotSpwan.position, shotSpwan.rotation);
+                    _audioSource.Play();
+                }
+                else if(isDoubleGun)
+                {
+                    foreach (var shotSpawn in shotSpwans)
+                    {
+                        Debug.Log("doubleGun");
+                        Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+                        _audioSource.Play();
+                    }
+                }
             }
         }
 
@@ -73,7 +94,7 @@ namespace Assets.Scripts
 
             //var moveHorizontal = Input.GetAxis("Horizontal");
             //var moveVertical = Input.GetAxis("Vertical");
-
+            //
             //var movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             //----
 

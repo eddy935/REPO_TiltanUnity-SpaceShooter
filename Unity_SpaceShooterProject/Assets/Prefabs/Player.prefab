@@ -330,15 +330,20 @@ MonoBehaviour:
   speed: 10
   tilt: 5
   boundary:
-    xMin: -6
-    xMax: 6
+    xMin: -5.7
+    xMax: 5.7
     zMin: -4
     zMax: 8
   shot: {fileID: 1022431143080228, guid: 3efbb751ade37c54a9a4ee0ab08d5597, type: 2}
   shotSpwan: {fileID: 4003461137890196}
+  shotSpwans:
+  - {fileID: 4003461137890196}
+  - {fileID: 4163696241046288, guid: d7d1e10194166ea4cb3a42e3a9580a38, type: 2}
+  - {fileID: 4960300142970812, guid: d7d1e10194166ea4cb3a42e3a9580a38, type: 2}
   fireRate: 0.25
   touchPad: {fileID: 0}
   areaButton: {fileID: 0}
+  isDoubleGun: 0
 --- !u!198 &198371638826030076
 ParticleSystem:
   m_ObjectHideFlags: 1
