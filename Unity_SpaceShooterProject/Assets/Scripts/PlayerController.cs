@@ -40,6 +40,7 @@ namespace Assets.Scripts
 
         void Update()
         {
+<<<<<<< HEAD
             // if (areaButton.CanFire() && Time.time > _nextFire)
             // {
             //     _nextFire = Time.time + fireRate;
@@ -47,6 +48,14 @@ namespace Assets.Scripts
             //     _audioSource.Play();
             // }
             if (Input.GetKey(KeyCode.LeftControl) && Time.time > _nextFire)
+=======
+            ProjectileManagement();
+        }
+
+        void ProjectileManagement()
+        {
+            if (areaButton.CanFire() && Time.time > _nextFire)
+>>>>>>> master
             {
                 _nextFire = Time.time + fireRate;
                 if (!isDoubleGun)
