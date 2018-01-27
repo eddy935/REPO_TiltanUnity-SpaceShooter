@@ -38,6 +38,11 @@ namespace Assets.Scripts
 
         void Update()
         {
+            ProjectileManagement();
+        }
+
+        void ProjectileManagement()
+        {
             if (areaButton.CanFire() && Time.time > _nextFire)
             {
                 _nextFire = Time.time + fireRate;

@@ -7,9 +7,14 @@ public class DestroyByHealth : MonoBehaviour {
 
     public int health;
 
-	// Use this for initialization
-	void Start () {
+    private float bossHealthMultiplier;
+    private GameController _gameControllerRef;
 
+    // Use this for initialization
+    void Start () {
+        bossHealthMultiplier = 1.3f;
+        FindGameController();
+        SetBossHealth();
     }
 	
 	// Update is called once per frame
@@ -20,5 +25,27 @@ public class DestroyByHealth : MonoBehaviour {
     public void DecreaseHealth()
     {
         health--;
+    }
+
+    void FindGameController()
+    {
+        var gameControllerObj = GameObject.FindWithTag("GameController");
+        if (gameControllerObj != null)
+        {
+            _gameControllerRef = gameControllerObj.GetComponent<GameController>();
+        }
+
+        if (gameControllerObj == null)
+        {
+            Debug.Log("Cannot find GameControllerRef script!!!");
+        }
+    }
+
+    void SetBossHealth()
+    {
+        for (int i = 0; i < _gameControllerRef.bossesKilled; i++)
+        {
+            health = (int)Mathf.Round((health * bossHealthMultiplier));
+        }
     }
 }

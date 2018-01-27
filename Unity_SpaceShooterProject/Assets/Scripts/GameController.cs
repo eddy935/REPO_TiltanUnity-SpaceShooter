@@ -19,12 +19,13 @@ namespace Assets.Scripts
         public GameObject menuButton;
         public int bossTimer;
         public bool bossSpawned = false;
-        public int bossSpawnWait;
 
+        public int bossSpawnWait;
         private bool _isGameOver;
         private int _score;
         private Coroutine coroutine;
         private Vector3 bossSpawnOffset;
+        public int bossesKilled;
 
         void Start()
         {
@@ -35,22 +36,22 @@ namespace Assets.Scripts
             _score = 0;
             UpdateScore();
             coroutine = StartCoroutine(SpawnWaves());
-            bossTimer = 0;
             bossSpawnOffset = new Vector3(0, 0, 21);
+            RandomizeBossSpawnWait();
         }
 
         void Update()
         {
+            ActivateRestartButton();
+            bossTimer = (int)Mathf.Floor(Time.timeSinceLevelLoad);
+            SpawnBossCaller();
+        }
+
+        void ActivateRestartButton()
+        {
             if (_isGameOver)
             {
                 restartButton.SetActive(true);
-            }
-            bossTimer = (int)Mathf.Floor(Time.timeSinceLevelLoad);
-            if (bossTimer == bossSpawnWait && bossSpawned == false)
-            {
-
-                StopCoroutine(coroutine);
-                coroutine = StartCoroutine(SpawnBoss());
             }
         }
 
@@ -77,6 +78,15 @@ namespace Assets.Scripts
             }
         }
 
+        void SpawnBossCaller()
+        {
+            if (bossTimer == bossSpawnWait && bossSpawned == false)
+            {
+                StopCoroutine(coroutine);
+                coroutine = StartCoroutine(SpawnBoss());
+            }
+        }
+
         IEnumerator SpawnBoss()
         {
             if (!_isGameOver)
@@ -91,7 +101,7 @@ namespace Assets.Scripts
             }
             else
                 yield return null;
-                StopCoroutine(coroutine);
+            StopCoroutine(coroutine);
         }
 
         public void AddScore(int newScoreValue)
@@ -119,9 +129,13 @@ namespace Assets.Scripts
         public void BossDestroyed()
         {
             coroutine = StartCoroutine(SpawnWaves());
+            bossesKilled++;
             bossSpawned = false;
-            bossSpawnWait = bossTimer + 15;
-
+            RandomizeBossSpawnWait();
+        }
+        void RandomizeBossSpawnWait()
+        {
+            bossSpawnWait = Random.Range(5, 20) + bossTimer;
         }
     }
 }

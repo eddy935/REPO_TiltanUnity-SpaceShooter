@@ -6,7 +6,6 @@ namespace Assets.Scripts
     {
         public GameObject explosion;
         public GameObject playerExplosion;
-
         public int scoreValue;
 
         private GameController _gameControllerRef;
@@ -15,16 +14,7 @@ namespace Assets.Scripts
         void Start()
         {
             _destroyByHealthRef = GetComponent<DestroyByHealth>();
-            var gameControllerObj = GameObject.FindWithTag("GameController");
-            if (gameControllerObj != null)
-            {
-                _gameControllerRef = gameControllerObj.GetComponent<GameController>();
-            }
-
-            if (gameControllerObj == null)
-            {
-                Debug.Log("Cannot find GameControllerRef script!!!");
-            }
+            FindGameController();
         }
 
         void OnTriggerEnter(Collider other)
@@ -59,12 +49,25 @@ namespace Assets.Scripts
                 _gameControllerRef.AddScore(scoreValue);
                 DestroyGameObject(other);
             }
-
         }
         public void DestroyGameObject(Collider other)
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
+        }
+
+        void FindGameController()
+        {
+            var gameControllerObj = GameObject.FindWithTag("GameController");
+            if (gameControllerObj != null)
+            {
+                _gameControllerRef = gameControllerObj.GetComponent<GameController>();
+            }
+
+            if (gameControllerObj == null)
+            {
+                Debug.Log("Cannot find GameControllerRef script!!!");
+            }
         }
     }
 }
