@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114420535240623886}
   - component: {fileID: 114585255767236980}
   - component: {fileID: 114188638039403438}
+  - component: {fileID: 114092879642320500}
   m_Layer: 0
   m_Name: BoltEnemy
   m_TagString: Enemy
@@ -131,6 +132,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114092879642320500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1870379474512902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf77f76d6afe2444ada37dda3884428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
 --- !u!114 &114188638039403438
 MonoBehaviour:
   m_ObjectHideFlags: 1

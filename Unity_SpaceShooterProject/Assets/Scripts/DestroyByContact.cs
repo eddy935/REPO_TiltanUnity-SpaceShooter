@@ -2,51 +2,72 @@
 
 namespace Assets.Scripts
 {
-	public class DestroyByContact : MonoBehaviour
-	{
-		public GameObject explosion;
-		public GameObject playerExplosion;
+    public class DestroyByContact : MonoBehaviour
+    {
+        public GameObject explosion;
+        public GameObject playerExplosion;
+        public int scoreValue;
 
-		public int scoreValue;
+        private GameController _gameControllerRef;
+        private DestroyByHealth _destroyByHealthRef;
 
-		private GameController _gameControllerRef;
+        void Start()
+        {
+            _destroyByHealthRef = GetComponent<DestroyByHealth>();
+            FindGameController();
+        }
 
-		void Start()
-		{
-			var gameControllerObj = GameObject.FindWithTag("GameController");
-			if (gameControllerObj != null)
-			{
-				_gameControllerRef = gameControllerObj.GetComponent<GameController>();
-			}
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Boss" || other.tag == "Enemy")
+            {
+                return;
+            }
 
-			if (gameControllerObj == null)
-			{
-				Debug.Log("Cannot find GameControllerRef script!!!");
-			}
-		}
+            if (explosion != null)
+            {
+                Instantiate(explosion, transform.position, transform.rotation);
 
-		void OnTriggerEnter(Collider other)
-		{   
-			if(other.tag == "boundary" || other.tag == "Enemy")
-			{
-				return;
-			}
+            }
 
+            if (other.tag == "Player")
+            {
+                Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+                _gameControllerRef.GameOver();
+                DestroyGameObject(other);
+            }
+            if (other.tag == "PlayerShot")
+            {
+                _destroyByHealthRef.DecreaseHealth();
+            }
+            if (_destroyByHealthRef.health <= 0)
+            {
+                if(tag == "Boss")
+                {
+                    _gameControllerRef.BossDestroyed();
+                }
+                _gameControllerRef.AddScore(scoreValue);
+                DestroyGameObject(other);
+            }
+        }
+        public void DestroyGameObject(Collider other)
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
 
-			if (explosion != null)
-			{
-				Instantiate(explosion, transform.position, transform.rotation);
+        void FindGameController()
+        {
+            var gameControllerObj = GameObject.FindWithTag("GameController");
+            if (gameControllerObj != null)
+            {
+                _gameControllerRef = gameControllerObj.GetComponent<GameController>();
+            }
 
-			}
-
-			if (other.tag == "Player")
-			{
-				Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-				_gameControllerRef.GameOver();
-			}
-			_gameControllerRef.AddScore(scoreValue);
-			Destroy(other.gameObject);
-			Destroy(gameObject);
-		}
-	}
+            if (gameControllerObj == null)
+            {
+                Debug.Log("Cannot find GameControllerRef script!!!");
+            }
+        }
+    }
 }
