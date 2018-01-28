@@ -64,7 +64,7 @@ namespace Assets.Scripts
                 {
                     for (int i = 0; i < hazardCount; i++)
                     {
-                        var hazard = hazards[Random.Range(0, 4)];
+                        var hazard = hazards[Random.Range(0, hazards.Length - 1)];
                         var spawnPosition = new Vector3(Random.Range(-spawnValue.x, spawnValue.x), spawnValue.y, spawnValue.z);
                         var spawnRotation = Quaternion.identity;
 
@@ -92,7 +92,7 @@ namespace Assets.Scripts
             if (!_isGameOver)
             {
                 bossSpawned = true;
-                var hazard = hazards[4];
+                var hazard = hazards[hazards.Length - 1];
                 var spawnPosition = bossSpawnOffset;
                 var spawnRotation = Quaternion.identity;
 
