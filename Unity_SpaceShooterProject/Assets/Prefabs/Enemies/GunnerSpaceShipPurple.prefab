@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8f7be33fb4b024c9a35f7074c17b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 8
+  lifeTime: 10
 --- !u!114 &114079831118283302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf77f76d6afe2444ada37dda3884428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 1
 --- !u!114 &114786590209077016
 MonoBehaviour:
   m_ObjectHideFlags: 1
