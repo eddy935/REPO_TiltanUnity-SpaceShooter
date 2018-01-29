@@ -20,7 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4316649858332412}
   - component: {fileID: 54261069450056862}
+<<<<<<< HEAD
   - component: {fileID: 135712028568966540}
+=======
+  - component: {fileID: 136776428726342796}
+>>>>>>> eb48825c65256ea0a4029217fafae784db64696b
   - component: {fileID: 114925525492866160}
   - component: {fileID: 114259992842253660}
   - component: {fileID: 114542374325894380}
@@ -203,17 +207,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+<<<<<<< HEAD
 --- !u!135 &135712028568966540
 SphereCollider:
+=======
+--- !u!136 &136776428726342796
+CapsuleCollider:
+>>>>>>> eb48825c65256ea0a4029217fafae784db64696b
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1048372548900828}
   m_Material: {fileID: 0}
+<<<<<<< HEAD
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7
+=======
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.003
+  m_Height: 0.5
+  m_Direction: 2
+>>>>>>> eb48825c65256ea0a4029217fafae784db64696b
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198097191878195422
 ParticleSystem:

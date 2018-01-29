@@ -86,7 +86,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4668856519860902}
   - component: {fileID: 54244129854424012}
+<<<<<<< HEAD
   - component: {fileID: 136528288067740772}
+=======
+  - component: {fileID: 135917758963036778}
+>>>>>>> eb48825c65256ea0a4029217fafae784db64696b
   - component: {fileID: 114405034680671084}
   - component: {fileID: 114989232849194020}
   - component: {fileID: 114456016520492708}
@@ -177,15 +181,20 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1642066918328980}
+<<<<<<< HEAD
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.40469217, y: -2.9521484, z: 2.7360034}
+=======
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -16.448385, y: 5.8464575, z: -2.086052}
+>>>>>>> eb48825c65256ea0a4029217fafae784db64696b
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4551498285453580}
   - {fileID: 4028990746395420}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4861894033272520
 Transform:
   m_ObjectHideFlags: 1
@@ -327,19 +336,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -3
+<<<<<<< HEAD
 --- !u!136 &136528288067740772
 CapsuleCollider:
+=======
+--- !u!135 &135917758963036778
+SphereCollider:
+>>>>>>> eb48825c65256ea0a4029217fafae784db64696b
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1642066918328980}
   m_Material: {fileID: 0}
+<<<<<<< HEAD
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 3.1
   m_Height: 9.015628
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+=======
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.26
+  m_Center: {x: 0, y: 0, z: -0.3}
+>>>>>>> eb48825c65256ea0a4029217fafae784db64696b
 --- !u!198 &198011534024697156
 ParticleSystem:
   m_ObjectHideFlags: 1
